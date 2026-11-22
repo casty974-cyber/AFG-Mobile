@@ -164,8 +164,9 @@ body {
     margin-top: 8px;
 }
 
-.panel {
-    margin-bottom: 20px;
+.panel h4{
+    font-size: 14px;
+    margin-bottom: 15px;
 }
 
 .panel h3 {
@@ -491,15 +492,25 @@ body {
     padding:22px;
     background:
         radial-gradient(circle at top right,#23477c 0%,transparent 42%),
-        linear-gradient(145deg,#081426,#101f36 55%,#142c4c);
+        linear-gradient(145deg,#1f1a1a,hwb(349 12% 77%),#484525,#184938,#0f283b,#471325,black);
     font-family:Arial,sans-serif;
 ">
 
     <div style="
         width:100%;
         max-width:390px;
-        background:#ffffff;
-        padding:34px 25px 26px;
+      background:linear-gradient(
+    100deg,
+    #711f1f,
+    hwb(350 11% 50%),
+    #3c3706,
+    #23473b,
+    #205279,
+    #571063,
+    #4a0c21,
+    black    
+  );
+        padding:30px 15px 16px;
         border-radius:22px;
         text-align:center;
         box-shadow:0 25px 70px rgba(0,0,0,0.35);
@@ -514,25 +525,26 @@ body {
             justify-content:center;
             border-radius:22px;
             background:linear-gradient(135deg,#2864dc,#153c86);
-            color:white;
-            font-size:36px;
-            box-shadow:0 8px 20px rgba(40,100,220,0.25);
+            color:hwb(40 36% 8%);
+            font-size:35px;
+            font-weight: 750;
+            box-shadow:0 10px 25px rgba(40,100,220,0.25);
         ">
-            AF
+            AFG
         </div>
 
         <h2 style="
-            color:#14243b;
-            font-size:21px;
-            font-weight:800;
+            color:#872592;
+            font-size:26px;
+            font-weight:750;
             letter-spacing:0.5px;
         ">
             ALL FOUNDATION GROUP
         </h2>
 
         <p style="
-            color:#2864dc;
-            font-size:10px;
+            color:#151617;
+            font-size:12px;
             font-weight:bold;
             letter-spacing:2px;
             margin-top:8px;
@@ -542,7 +554,7 @@ body {
 
         <div style="
             height:1px;
-            background:#e8edf5;
+            background:#828993;
             margin:25px 0;
         "></div>
 
@@ -551,18 +563,18 @@ body {
             height:45px;
             margin:0 auto 12px;
             border-radius:50%;
-            background:#edf3ff;
+            background:#ffffff;
             display:flex;
             align-items:center;
             justify-content:center;
-            font-size:21px;
+            font-size:25px;
         ">
             🔐
         </div>
 
         <h3 id="authTitle" style="
             color:#172b46;
-            font-size:19px;
+            font-size:15px;
             margin-bottom:9px;
         ">
             Welcome Back
@@ -577,16 +589,7 @@ body {
             Enter your private PIN to access your workspace.
         </p>
 
-        <div style="text-align:left;margin-bottom:8px;">
-            <label style="
-                color:#33445d;
-                font-size:12px;
-                font-weight:bold;
-            ">
-                WORKSPACE SECURITY PIN
-            </label>
-        </div>
-
+        
         <input
             id="pinInput"
             type="password"
@@ -594,15 +597,15 @@ body {
             pattern="[0-9]*"
             maxlength="32"
             autocomplete="off"
-            placeholder="Enter your PIN"
+            placeholder="Enter Your PIN"
             style="
                 width:100%;
-                padding:17px 14px;
+                padding:17px 20px;
                 border:1px solid #dce4ef;
                 border-radius:11px;
                 background:#f8faff;
                 text-align:center;
-                font-size:23px;
+                font-size:15px;
                 letter-spacing:8px;
                 outline:none;
                 margin-bottom:18px;
@@ -613,13 +616,13 @@ body {
     type="button"
     onclick="togglePinVisibility(this)"
     style="
-        width:100%;
-        padding:12px;
-        margin-bottom:18px;
-        background:#263750;
-        color:white;
-        border:1px solid #49617e;
-        border-radius:9px;
+        width:50%;
+        padding:5px;
+        margin-bottom:5px;
+        background:#7c0794;
+        color:hwb(303 7% 55%);
+        border:1px solid #a121ab;
+        border-radius:5px;
     ">
     ⚽️ Show PIN
 </button>
@@ -646,7 +649,7 @@ body {
 
         <p style="
             margin-top:23px;
-            color:#9aa6b7;
+            color:#020202dc;
             font-size:10px;
         ">
             PRIVATE • SECURE • PERSONAL
@@ -654,12 +657,12 @@ body {
 
         <p style="
             margin-top:9px;
-            color:#2864dc;
-            font-size:11px;
+            color:#020202;
+            font-size:10px;
             font-weight:bold;
             letter-spacing:1px;
         ">
-            ALL FOUNDATION GROUP
+            @meshachowi
         </p>
 
     </div>
@@ -756,7 +759,9 @@ body {
 
     </div>
 
-    <div class="profile">PERSONAL WORKSPACE</div>
+    <div class="profile"> 
+      O•M Personal Workspace
+    </div>
 
 </header>
 
@@ -1291,7 +1296,7 @@ body {
 
         <label>Task Date</label>
         <input id="taskDate" type="date">
-
+ 
         <label>Start Time</label>
         <input id="taskStartTime" type="time">
 
@@ -1444,8 +1449,8 @@ body {
 
         <label>Direction</label>
         <select id="tradeDirection">
-            <option>Buy</option>
-            <option>Sell</option>
+            <option>Long</option>
+            <option>Short</option>
         </select>
 
         <label>Lot Size</label>
@@ -2036,4 +2041,3 @@ if (id === "settings") {
 
 </body>
 </html>
-
