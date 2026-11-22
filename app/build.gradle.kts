@@ -9,7 +9,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.allfoundation.group"
+        applicationId = "com.allfoundation.datajournalhub"
         minSdk = 23
         targetSdk = 35
         versionCode = 1
