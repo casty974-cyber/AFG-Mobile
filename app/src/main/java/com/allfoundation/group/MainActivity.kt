@@ -1,8 +1,11 @@
+
 package com.allfoundation.group
 
 import android.app.Activity
 import android.os.Bundle
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.webkit.WebViewAssetLoader
@@ -23,17 +26,31 @@ class MainActivity : Activity() {
 
         webView = WebView(this)
 
-        webView.settings.javaScriptEnabled = true
-        webView.settings.domStorageEnabled = true
-        webView.settings.allowFileAccess = false
-        webView.settings.allowContentAccess = false
+        webView.settings.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true
+            allowFileAccess = false
+            allowContentAccess = false
+        }
 
         webView.webViewClient = object : WebViewClient() {
+
             override fun shouldInterceptRequest(
                 view: WebView,
-                request: android.webkit.WebResourceRequest
-            ): android.webkit.WebResourceResponse? {
+                request: WebResourceRequest
+            ): WebResourceResponse? {
                 return assetLoader.shouldInterceptRequest(request.url)
+                    ?: super.shouldInterceptRequest(view, request)
+            }
+
+            @Suppress("DEPRECATION")
+            override fun shouldInterceptRequest(
+                view: WebView,
+                url: String
+            ): WebResourceResponse? {
+                return assetLoader.shouldInterceptRequest(
+                    android.net.Uri.parse(url)
+                ) ?: super.shouldInterceptRequest(view, url)
             }
         }
 
@@ -46,6 +63,7 @@ class MainActivity : Activity() {
         )
     }
 
+    @Deprecated("Deprecated in Android")
     override fun onBackPressed() {
         if (::webView.isInitialized && webView.canGoBack()) {
             webView.goBack()
@@ -54,3 +72,4 @@ class MainActivity : Activity() {
         }
     }
 }
+
