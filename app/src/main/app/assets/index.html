@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b2d">
+<title>ALL FOUNDATION GROUP</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f3f5f9;
+    --sidebar: #101b2d;
+    --primary: #2864dc;
+    --text: #202b3c;
+    --muted: #8490a2;
+    --white: #ffffff;
+    --border: #e8ecf2;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: var(--sidebar);
+    color: white;
+    padding: 20px 12px;
+    flex-shrink: 0;
+}
+
+.brand {
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: 5px 10px 30px;
+}
+
+.brand span {
+    display: block;
+    color: #8da9d5;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.nav-title {
+    color: #8292aa;
+    font-size: 15px;
+    padding: 15px 10px 10px;
+    letter-spacing: 1.5px;
+}
+
+.nav-item {
+    padding: 13px 12px;
+    margin: 4px 0;
+    border-radius: 7px;
+    cursor: pointer;
+    color: #c1ccdc;
+    font-size: 13px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: #253c5c;
+    color: white;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+    padding: 25px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    gap: 15px;
+}
+
+.topbar h2 {
+    font-size: 20px;
+}
+
+.topbar p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+.profile {
+    background: hwb(219 36% 9%);
+    border: 1px solid var(--border);
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card,
+.panel {
+    background: hwb(271 84% 6% / 0.8156862745098039);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.stat-card small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.stat-card h2 {
+    font-size: 15px;
+    margin-top: 13px;
+}
+
+.stat-card p {
+    color: #249b75;
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+.panel h4{
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.panel h3 {
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.empty {
+    padding: 35px 10px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.action {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 12px;
+    background: hwb(221 15% 23% / 0.807843137254902);
+    cursor: pointer;
+    text-align: left;
+}
+
+.action strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.action small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+button {
+    font-family: inherit;
+}
+/* COLLAPSIBLE SIDEBAR */
+
+.sidebar {
+    transition: transform 0.3s ease;
+}
+
+.app.sidebar-hidden .sidebar {
+    display: none;
+}
+
+.main {
+    transition: all 0.3s ease;
+}
+
+@media(max-width:550px) {
+    .app.sidebar-hidden .sidebar {
+        display: none;
+    }
+}
+  
+@media(max-width: 800px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .action-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 550px) {
+    .app {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .brand {
+        padding: 5px 8px 12px;
+    }
+
+    .nav-title {
+        display: none;
+    }
+
+    .navigation {
+    display: flex;
+    flex-direction: column;
+    overflow-x: visible;
+    overflow-y: auto;
+    gap: 3px;
+    width: 100%;
+}
+
+.navigation .nav-item {
+    width: 100%;
+    white-space: normal;
+    text-align: left;
+    padding: 14px 12px;
+    font-size: 13px;
+}
+
+    .nav-item {
+        white-space: nowrap;
+        padding: 11px;
+        font-size: 11px;
+    }
+
+    .main {
+        padding: 17px 12px;
+    }
+
+    .topbar h2 {
+        font-size: 15px;
+    }
+
+    .profile {
+        font-size: 10px;
+    }
+
+    .stats {
+        gap: 9px;
+    }
+
+    .stat-card {
+        padding: 14px;
+    }
+
+    .stat-card h2 {
+        font-size: 15px;
+    }
+
+    .action-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =================================
+   MOBILE WORKSPACE LAYOUT FIX
+================================= */
+
+.app {
+    display: block !important;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    display: none;
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: min(180px, 85vw);
+    height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
+    overflow-x: auto;
+    z-index: 2000;
+    box-shadow: 5px 0 25px rgba(135, 20, 159, 0.25098039215686274);
+}
+
+.app.sidebar-open .sidebar {
+    display: block;
+}
+
+.main {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 17px 12px;
+    margin: 0;
+}
+
+.topbar {
+    width: 100%;
+    min-width: 0;
+}
+
+.section {
+    width: 100%;
+    min-width: 0;
+}
+
+.stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.action-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+.ta-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 5px;
+    margin-top: 15px;
+}
+
+.ta-day-name,
+.ta-day,
+.ta-empty {
+    min-width: 0;
+    min-height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    font-size: 12px;
+}
+
+.ta-day-name {
+    font-weight: bold;
+    color: #94a3b8;
+}
+
+.ta-day {
+    font-weight: bold;
+}
+
+.ta-profit {
+    background: #166534;
+    color: white;
+}
+
+.ta-loss {
+    background: #991b1b;
+    color: white;
+}
+
+.ta-even {
+    background: #ca8a04;
+    color: white;
+}
+
+.ta-no-trade {
+    background: #374151;
+    color: #d1d5db;
+}
+
+.ta-chart-row {
+    display: grid;
+    grid-template-columns: 75px 1fr 75px;
+    gap: 8px;
+    align-items: center;
+    margin: 12px 0;
+}
+
+.ta-bar-track {
+    width: 100%;
+    background: #374151;
+    border-radius: 5px;
+    overflow: hidden;
+    min-height: 14px;
+}
+/* TRADING ACCOUNT OVERVIEW CARDS */
+
+.account-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+}
+
+.account-card {
+    background: white;
+    border: 1px solid #e8ecf2;
+    border-radius: 12px;
+    padding: 20px 15px;
+    box-shadow: 0 3px 12px rgba(16,27,45,0.05);
+}
+
+.account-card h3 {
+    font-size: 12px;
+    color: #8490a2;
+    margin-bottom: 12px;
+}
+
+.account-card h2 {
+    font-size: 19px;
+    color: #202b3c;
+    overflow-wrap: anywhere;
+}
+
+@media(max-width: 380px) {
+    .account-card {
+        padding: 15px 10px;
+    }
+
+    .account-card h2 {
+        font-size: 16px;
+    }
+}
+  
+</style>
+</head>
+
+<body>
+
+
+<div id="authScreen" style="
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:22px;
+    background:
+        radial-gradient(circle at top right,#23477c 0%,transparent 42%),
+        linear-gradient(145deg,#1f1a1a,hwb(349 12% 77%),#484525,#184938,#0f283b,#471325,black);
+    font-family:Arial,sans-serif;
+">
+
+    <div style="
+        width:100%;
+        max-width:390px;
+      background:linear-gradient(
+    100deg,
+    #711f1f,
+    hwb(350 11% 50%),
+    #3c3706,
+    #23473b,
+    #205279,
+    #571063,
+    #4a0c21,
+    black    
+  );
+        padding:30px 15px 16px;
+        border-radius:22px;
+        text-align:center;
+        box-shadow:0 25px 70px rgba(0,0,0,0.35);
+    ">
+
+        <div style="
+            width:76px;
+            height:76px;
+            margin:0 auto 18px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:22px;
+            background:linear-gradient(135deg,#2864dc,#153c86);
+            color:hwb(40 36% 8%);
+            font-size:35px;
+            font-weight: 750;
+            box-shadow:0 10px 25px rgba(40,100,220,0.25);
+        ">
+            AFG
+        </div>
+
+        <h2 style="
+            color:#872592;
+            font-size:26px;
+            font-weight:750;
+            letter-spacing:0.5px;
+        ">
+            ALL FOUNDATION GROUP
+        </h2>
+
+        <p style="
+            color:#151617;
+            font-size:12px;
+            font-weight:bold;
+            letter-spacing:2px;
+            margin-top:8px;
+        ">
+            INFORMATION MANAGEMENT HUB
+        </p>
+
+        <div style="
+            height:1px;
+            background:#828993;
+            margin:25px 0;
+        "></div>
+
+        <div style="
+            width:45px;
+            height:45px;
+            margin:0 auto 12px;
+            border-radius:50%;
+            background:#ffffff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:25px;
+        ">
+            🔐
+        </div>
+
+        <h3 id="authTitle" style="
+            color:#172b46;
+            font-size:15px;
+            margin-bottom:9px;
+        ">
+            Welcome Back
+        </h3>
+
+        <p id="authMessage" style="
+            color:#78869a;
+            font-size:12px;
+            line-height:1.7;
+            margin-bottom:22px;
+        ">
+            Enter your private PIN to access your workspace.
+        </p>
+
+        
+        <input
+            id="pinInput"
+            type="password"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="32"
+            autocomplete="off"
+            placeholder="Enter Your PIN"
+            style="
+                width:100%;
+                padding:17px 20px;
+                border:1px solid #dce4ef;
+                border-radius:11px;
+                background:#f8faff;
+                text-align:center;
+                font-size:15px;
+                letter-spacing:8px;
+                outline:none;
+                margin-bottom:18px;
+                color:#14243b;
+            "
+        >
+      <button
+    type="button"
+    onclick="togglePinVisibility(this)"
+    style="
+        width:50%;
+        padding:5px;
+        margin-bottom:5px;
+        background:#7c0794;
+        color:hwb(303 7% 55%);
+        border:1px solid #a121ab;
+        border-radius:5px;
+    ">
+    ⚽️ Show PIN
+</button>
+
+        <button
+            id="authButton"
+            type="button"
+            style="
+                width:100%;
+                padding:16px;
+                background:linear-gradient(135deg,#2864dc,#174aab);
+                color:white;
+                border:none;
+                border-radius:11px;
+                font-size:14px;
+                font-weight:bold;
+                letter-spacing:1px;
+                box-shadow:0 7px 16px rgba(40,100,220,0.22);
+                cursor:pointer;
+            "
+        >
+            UNLOCK WORKSPACE
+        </button>
+
+        <p style="
+            margin-top:23px;
+            color:#020202dc;
+            font-size:10px;
+        ">
+            PRIVATE • SECURE • PERSONAL
+        </p>
+
+        <p style="
+            margin-top:9px;
+            color:#020202;
+            font-size:10px;
+            font-weight:bold;
+            letter-spacing:1px;
+        ">
+            @meshachowi
+        </p>
+
+    </div>
+</div>
+
+
+  
+<div class="app">
+
+<aside class="sidebar">
+
+    <div class="brand">
+        ALL FOUNDATION GROUP
+        <span>INFORMATION MANAGEMENT</span>
+    </div>
+
+    <div class="nav-title">WORKSPACE</div>
+
+    <nav class="navigation">
+
+        <div class="nav-item active"
+        onclick="showSection('dashboard',this)">
+        ◈ Dashboard</div>
+
+        <div class="nav-item"
+        onclick="showSection('collection',this)">
+        ▤ Data Collection</div>
+
+        <div class="nav-item"
+        onclick="showSection('journal',this)">
+        ▣ Journal Entries</div>
+
+        <div class="nav-item" onclick="showSection('planner',this)">
+         📅 Daily Tasks & Activities</div>
+
+         <div class="nav-item" onclick="showSection('trading',this)">
+         📈 Trading Journal</div>
+
+        <div class="nav-item" onclick="showSection('tradingAnalytics',this)">
+         📊 Trading Analytics</div>
+
+         <div class="nav-item" onclick="showSection('tradingAccount',this)">
+        💱 Trading Account</div>
+      
+        <div class="nav-item"
+        onclick="showSection('records',this)">
+        ☢️ Records Manager</div>
+
+        <div class="nav-item"
+        onclick="showSection('analytics',this)">
+        ◷ Analytics</div>
+
+        <div class="nav-item"
+        onclick="showSection('reports',this)">
+        ▤ Reports</div>
+
+        <div class="nav-item"
+        onclick="showSection('attachments',this)">
+        🔃 Attachments</div>
+
+        <div class="nav-item"
+        onclick="showSection('settings',this)">
+        ⚙ Settings</div>
+      
+    </nav>
+
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+
+    <div style="display:flex;align-items:center;gap:12px;">
+
+        <button id="menuToggle"
+        onclick="toggleSidebar()"
+        style="
+            width:42px;
+            height:42px;
+            border:0;
+            border-radius:8px;
+            background:#101b2d;
+            color:white;
+            font-size:23px;
+            cursor:pointer;
+        ">
+            ☰
+        </button>
+
+        <div style="text-align: left;">
+            <h2 id="pageTitle">Main Dashboard</h2>
+            <p>Central information management workspace</p>
+        </div>
+
+    </div>
+
+    <div class="profile"> 
+      O•M Personal Workspace
+    </div>
+
+</header>
+
+
+<section id="dashboard" class="section active">
+
+    <div class="section-heading">
+        <h2>Dashboard Overview</h2>
+        <p>Your information and activities at a glance.</p>
+    </div>
+
+    <h3>Data Management</h3>
+
+    <div class="stats">
+        <div class="stat-card">
+            <small>TOTAL RECORDS</small>
+            <h2 id="dashTotalRecords">0</h2>
+            <p>All stored records</p>
+        </div>
+
+        <div class="stat-card">
+            <small>JOURNAL ENTRIES</small>
+            <h2 id="dashJournalCount">0</h2>
+            <p>Personal journal</p>
+        </div>
+
+        <div class="stat-card">
+            <small>CUSTOM FORMS</small>
+            <h2 id="dashFormCount">0</h2>
+            <p>Created forms</p>
+        </div>
+
+        <div class="stat-card">
+            <small>COLLECTED DATA</small>
+            <h2 id="dashDataCount">0</h2>
+            <p>Information submissions</p>
+        </div>
+    </div>
+
+    <h3>Daily Tasks & Activities</h3>
+
+    <div class="stats">
+        <div class="stat-card">
+            <small>TOTAL TASKS</small>
+            <h2 id="dashTaskTotal">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <small>PENDING</small>
+            <h2 id="dashTaskPending">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <small>IN PROGRESS</small>
+            <h2 id="dashTaskProgress">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <small>COMPLETED</small>
+            <h2 id="dashTaskCompleted">0</h2>
+        </div>
+    </div>
+
+    <h3>Trading Overview</h3>
+
+    <div class="stats">
+        <div class="stat-card">
+            <small>TRADING BALANCE</small>
+            <h2 id="dashTradingBalance">0.00 UGX</h2>
+        </div>
+
+        <div class="stat-card">
+            <small>NET P&L</small>
+            <h2 id="dashTradingPnL">0.00 UGX</h2>
+        </div>
+
+        <div class="stat-card">
+            <small>ACCOUNT GROWTH</small>
+            <h2 id="dashTradingGrowth">0%</h2>
+        </div>
+
+        <div class="stat-card">
+            <small>CLOSED TRADES</small>
+            <h2 id="dashClosedTrades">0</h2>
+        </div>
+    </div>
+
+  
+<!-- DASHBOARD CHARTS -->
+
+<!-- SHARED DASHBOARD DATE FILTER -->
+
+<div class="panel" id="dashboardDateFilter">
+
+    <h3>Dashboard Period Filter</h3>
+
+    <label>Select Period</label>
+    <select id="dashboardPeriodMode"
+        style="width:100%;padding:12px;margin:8px 0 15px;">
+        <option value="day">Specific Day</option>
+        <option value="week">Selected Week</option>
+        <option value="month" selected>Selected Month</option>
+        <option value="year">Selected Year</option>
+    </select>
+
+    <label>Select Date</label>
+    <input
+        type="date"
+        id="dashboardPeriodDate"
+        style="width:100%;padding:12px;margin:8px 0 15px;"
+    >
+
+    <p id="dashboardPeriodLabel"
+        style="font-size:12px;color:#8490a2;">
+        Showing selected month's data.
+    </p>
+
+</div>
+
+  
+<div class="panel">
+    <h3>Activity Overview</h3>
+    <div id="dashboardActivityChart"></div>
+</div>
+
+<div class="panel">
+    <h3>Task Completion Progress</h3>
+    <div id="dashboardTaskChart"></div>
+</div>
+
+<div class="panel">
+    <h3>Trading P&L Performance</h3>
+    <div id="dashboardPnLChart"></div>
+</div>
+
+<div class="panel">
+    <h3>Trading Account Balance Trend</h3>
+    <div id="dashboardBalanceChart"></div>
+</div>
+
+    <div class="panel">
+        <h3>Recent Activities</h3>
+        <div id="dashboardRecentActivities">
+            <p>No recent activities yet.</p>
+        </div>
+    </div>
+
+    <!-- DASHBOARD INSIGHTS -->
+    <div class="panel">
+        <h3>Dashboard Insights</h3>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h4>Task Completion Rate</h4>
+                <h2 id="dashInsightTaskRate">0%</h2>
+            </div>
+
+            <div class="stat-card">
+                <h4>Trading Performance</h4>
+                <h2 id="dashInsightTrading">No Data</h2>
+            </div>
+
+            <div class="stat-card">
+                <h4>Records Overview</h4>
+                <h2 id="dashInsightRecords">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <h4>Latest Activity</h4>
+                <p id="dashInsightLatest">No activity yet</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Quick Actions</h3>
+
+        <div class="action-grid">
+            <button class="action" onclick="showSection('collection',this)">
+                Data Collection
+            </button>
+
+            <button class="action" onclick="showSection('journal',this)">
+                Journal Entries
+            </button>
+
+            <button class="action" onclick="showSection('planner',this)">
+                Daily Tasks
+            </button>
+
+            <button class="action" onclick="showSection('trading',this)">
+                Trading Journal
+            </button>
+
+            <button class="action" onclick="showSection('tradingAnalytics',this)">
+                Trading Analytics
+            </button>
+
+            <button class="action" onclick="showSection('tradingAccount',this)">
+                Trading Account
+            </button>
+
+            <button class="action" onclick="showSection('records',this)">
+                Records Manager
+            </button>
+        </div>
+    </>
+
+</section>
+
+
+
+<section id="collection" class="section">
+
+    <div class="section-heading">
+        <h2>Data Collection</h2>
+        <p>Create your own forms and collect information offline.</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <small>CREATED FORMS</small>
+            <h2 id="formTotal">0</h2>
+            <p>Custom collection forms</p>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <h3>Create a Custom Form</h3>
+
+        <form id="formBuilder">
+
+            <label>Form Name *</label>
+            <input
+                id="formName"
+                required
+                placeholder="Example: Farm Management Records"
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            >
+
+            <label>Form Description</label>
+            <textarea
+                id="formDescription"
+                rows="3"
+                placeholder="Describe what this form collects..."
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            ></textarea>
+
+            <h3>Add Form Fields</h3>
+
+            <label>Field Name *</label>
+            <input
+                id="fieldLabel"
+                placeholder="Example: Farm Name"
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            >
+
+            <label>Field Type</label>
+            <select
+                id="fieldType"
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            >
+                <option value="text">Short Text</option>
+                <option value="number">Number</option>
+                <option value="date">Date</option>
+                <option value="textarea">Long Description</option>
+            </select>
+
+            <label style="display:flex;align-items:center;gap:9px;margin-bottom:15px;">
+                <input type="checkbox" id="fieldRequired">
+                Required Field
+            </label>
+
+            <button
+                type="button"
+                id="addFieldButton"
+                style="width:100%;padding:13px;background:#edf1f7;border:0;border-radius:8px;"
+            >
+                + ADD FIELD
+            </button>
+
+            <div style="margin-top:20px;">
+                <h3>Form Fields</h3>
+                <div id="builderFieldList">
+                    <div class="empty">No fields added yet.</div>
+                </div>
+            </div>
+
+            <button
+                type="submit"
+                id="createFormButton"
+                style="width:100%;padding:15px;margin-top:18px;background:#2864dc;color:white;border:0;border-radius:8px;font-weight:bold;"
+            >
+                CREATE CUSTOM FORM
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>My Custom Forms</h3>
+
+        <div id="createdForms">
+            <div class="empty">No custom forms created yet.</div>
+        </div>
+
+    </div>
+
+    <div id="dataEntryArea"></div>
+
+</section>
+
+
+
+<section id="journal" class="section">
+
+    <div class="section-heading">
+        <h2>Journal Entries</h2>
+        <p>Capture, organize and manage your daily information.</p>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <small>TOTAL JOURNAL ENTRIES</small>
+            <h2 id="journalTotal">0</h2>
+            <p>Saved locally</p>
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>Create Journal Entry</h3>
+
+        <form id="journalForm">
+
+            <input type="hidden" id="journalEditId">
+
+            <label>Date and Time *</label>
+            <input
+                type="datetime-local"
+                id="journalDate"
+                required
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            >
+
+            <label>Category *</label>
+            <select
+                id="journalCategory"
+                required
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            >
+                <option value="">Select category</option>
+                <option>Personal</option>
+                <option>Business</option>
+                <option>Work</option>
+                <option>Education</option>
+                <option>Finance</option>
+                <option>Research</option>
+                <option>Health and Wellness</option>
+                <option>Travel</option>
+                <option>Other</option>
+            </select>
+
+            <label>Entry Title *</label>
+            <input
+                id="journalTitle"
+                required
+                placeholder="Enter journal title"
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            >
+
+            <label>Description</label>
+            <textarea
+                id="journalDescription"
+                rows="4"
+                placeholder="Describe your entry..."
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            ></textarea>
+
+            <label>Activities Performed</label>
+            <textarea
+                id="journalActivities"
+                rows="3"
+                placeholder="Record activities..."
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            ></textarea>
+
+            <label>Observations</label>
+            <textarea
+                id="journalObservations"
+                rows="3"
+                placeholder="Record observations..."
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            ></textarea>
+
+            <label>Challenges Encountered</label>
+            <textarea
+                id="journalChallenges"
+                rows="3"
+                placeholder="Record challenges..."
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            ></textarea>
+
+            <label>Decisions Made</label>
+            <textarea
+                id="journalDecisions"
+                rows="3"
+                placeholder="Record decisions..."
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            ></textarea>
+
+            <label>Follow-up Actions</label>
+            <textarea
+                id="journalFollowUp"
+                rows="3"
+                placeholder="What needs to happen next?"
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            ></textarea>
+
+            <label>Entry Status</label>
+            <select
+                id="journalStatus"
+                style="width:100%;padding:12px;margin:8px 0 16px;"
+            >
+                <option>Draft</option>
+                <option>Completed</option>
+                <option>Requires Follow-up</option>
+            </select>
+
+            <button
+                type="submit"
+                id="journalSaveButton"
+                style="width:100%;padding:15px;background:#2864dc;color:white;border:0;border-radius:8px;font-weight:bold;"
+            >
+                SAVE JOURNAL ENTRY
+            </button>
+
+            <button
+                type="button"
+                id="journalNewButton"
+                style="width:100%;padding:13px;margin-top:9px;background:#edf1f7;border:0;border-radius:8px;"
+            >
+                NEW ENTRY / CLEAR FORM
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>Journal History</h3>
+
+        <input
+            id="journalSearch"
+            placeholder="Search journal entries..."
+            style="width:100%;padding:13px;margin-bottom:18px;border:1px solid #e8ecf2;border-radius:8px;"
+        >
+
+        <div id="journalHistory">
+            <div class="empty">
+                No journal entries yet.
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="planner" class="section">
+
+    <h2>Daily Tasks & Activities Planner</h2>
+    <p>Plan, organize and monitor your daily activities.</p>
+
+    <div class="stats">
+
+        <div class="panel">
+            <h3 id="plannerTotal">0</h3>
+            <p>Total Tasks</p>
+        </div>
+
+        <div class="panel">
+            <h3 id="plannerCompleted">0</h3>
+            <p>Completed</p>
+        </div>
+
+        <div class="panel">
+            <h3 id="plannerPending">0</h3>
+            <p>Pending</p>
+        </div>
+
+        <div class="panel">
+            <h3 id="plannerInProgress">0</h3>
+            <p>In Progress</p>
+        </div>
+
+    </div>
+
+    <div class="panel">
+        <h3>Daily Progress</h3>
+        <h2 id="plannerProgress">0%</h2>
+    </div>
+
+    <div class="panel">
+
+        <h3>Create Daily Task</h3>
+
+        <input type="hidden" id="taskEditId">
+
+        <label>Task Title</label>
+        <input id="taskTitle" type="text"
+            placeholder="Enter task title">
+
+        <label>Category</label>
+        <select id="taskCategory">
+            <option>Personal</option>
+            <option>Business</option>
+            <option>Work</option>
+            <option>Education</option>
+            <option>Health & Fitness</option>
+            <option>Finance</option>
+            <option>Project</option>
+            <option>Other</option>
+        </select>
+
+        <label>Task Date</label>
+        <input id="taskDate" type="date">
+ 
+        <label>Start Time</label>
+        <input id="taskStartTime" type="time">
+
+        <label>Deadline</label>
+        <input id="taskDeadline" type="time">
+
+        <label>Priority</label>
+        <select id="taskPriority">
+            <option>Low</option>
+            <option selected>Medium</option>
+            <option>High</option>
+            <option>Urgent</option>
+        </select>
+
+        <label>Description</label>
+        <textarea id="taskDescription"
+            placeholder="Describe the task..."></textarea>
+
+        <label>Status</label>
+        <select id="taskStatus">
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+            <option>Cancelled</option>
+        </select>
+
+        <button id="taskSaveButton"
+            onclick="savePlannerTask()">
+            SAVE TASK
+        </button>
+
+        <button onclick="resetPlannerForm()">
+            CLEAR FORM
+        </button>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>My Daily Tasks</h3>
+
+        <input type="date" id="plannerFilterDate">
+
+        <select id="plannerFilterStatus">
+            <option value="all">All Statuses</option>
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+            <option>Cancelled</option>
+        </select>
+
+        <input type="search" id="plannerSearch"
+            placeholder="Search tasks...">
+
+        <div id="plannerTaskList">
+            <p>Your tasks will appear here.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="records" class="section">
+
+    <h2>Records Manager</h2>
+    <p>Manage your collected information and journal records.</p>
+
+    <div class="stats">
+        <div class="panel">
+            <h3 id="recordsCount">0</h3>
+            <p>Matching Records</p>
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <h3>Search Records</h3>
+
+        <input
+            type="search"
+            id="recordsSearch"
+            placeholder="Search your records..."
+            style="width:100%;padding:12px;margin:12px 0;"
+        >
+
+        <select
+            id="recordsFilter"
+            style="width:100%;padding:12px;margin-bottom:15px;"
+        >
+            <option value="all">All Records</option>
+            <option value="journal">Journal Entries</option>
+            <option value="data">Data Submissions</option>
+        </select>
+
+    </div>
+
+    <div class="panel">
+        <h3>All Records</h3>
+
+        <div id="recordsList">
+            <p>Your records will appear here.</p>
+        </div>
+    </div>
+
+</section>
+
+  
+<section id="trading" class="section">
+
+    <h2>Trading Journal</h2>
+    <p>Plan - Execute - Review</p>
+    <p>Trading currency: UGX</p>
+
+    <div class="stats">
+        <div class="panel">
+            <h3 id="tradeTotal">0</h3>
+            <p>Total Trades</p>
+        </div>
+
+        <div class="panel">
+            <h3 id="tradeWins">0</h3>
+            <p>Winning Trades</p>
+        </div>
+
+        <div class="panel">
+            <h3 id="tradeLosses">0</h3>
+            <p>Losing Trades</p>
+        </div>
+
+        <div class="panel">
+            <h3 id="tradeWinRate">0%</h3>
+            <p>Win Rate</p>
+        </div>
+
+        <div class="panel">
+            <h3 id="tradeNetPnL">0 UGX</h3>
+            <p>Net P&L</p>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Record Trade</h3>
+
+        <label>Instrument</label>
+        <input id="tradeInstrument" placeholder="e.g. EURUSD, XAUUSD, BTCUSD">
+
+        <label>Trade Date</label>
+        <input type="date" id="tradeDate">
+
+        <label>Direction</label>
+        <select id="tradeDirection">
+            <option>Long</option>
+            <option>Short</option>
+        </select>
+
+        <label>Lot Size</label>
+        <input type="number" id="tradeLotSize" step="0.01">
+
+        <label>Trading Session</label>
+        <select id="tradeSession">
+            <option>London</option>
+            <option>New York</option>
+            <option>Asian</option>
+            <option>Both</option>
+        </select>
+
+        <label>Strategy</label>
+        <select id="tradeStrategy">
+            <option>Breakouts</option>
+            <option>Support and Resistance</option>
+            <option>Trend Line</option>
+            <option>Other</option>
+        </select>
+
+        <label>Entry Price</label>
+        <input type="number" id="tradeEntry" step="any">
+
+        <label>Stop Loss</label>
+        <input type="number" id="tradeStopLoss" step="any">
+
+        <label>Target Price</label>
+        <input type="number" id="tradeTarget" step="any">
+
+        <label>Exit Price</label>
+        <input type="number" id="tradeExit" step="any">
+
+        <label>Trade Status</label>
+        <select id="tradeStatus">
+            <option>Open</option>
+            <option>Closed</option>
+        </select>
+
+         <label>Trading Outcome</label>
+         <select id="tradeOutcome">
+         <option value="Pending">Pending</option>
+         <option value="Win">Win</option>
+         <option value="Loss">Loss</option>
+         <option value="Break-even">Break-even</option>
+         </select>
+      
+        <label>Account Balance Before Trade (UGX)</label>
+        <input type="number" id="tradeBalanceBefore" step="any">
+       
+        <label>Risk Percentage (%)</label>
+        <input type="number" id="tradeRiskPercent"
+        value="6" min="0.1" max="100" step="0.1">
+
+        <label>Planned Risk Amount (UGX)</label>
+        <input type="number" id="tradeRiskAmount" readonly>
+
+       <div id="tradeRiskMonitor">
+       Enter your account balance to calculate your 6% risk limit.</div>
+ 
+        <label>Profit / Loss (UGX)</label>
+        <input type="number" id="tradePnL" step="any">
+
+        <label>Emotional State</label>
+        <select id="tradeEmotion">
+            <option>Neutral</option>
+            <option>Confident</option>
+            <option>Fearful</option>
+            <option>Greedy</option>
+            <option>Impatient</option>
+            <option>Frustrated</option>
+        </select>
+
+        <label>Execution Discipline</label>
+        <select id="tradeDiscipline">
+            <option>Followed Plan</option>
+            <option>Partially Followed Plan</option>
+            <option>Broke Trading Rules</option>
+        </select>
+
+        <label>Trade Notes and Observations</label>
+        <textarea id="tradeNotes"
+            placeholder="Record your analysis, observations and lessons..."></textarea>
+
+        <button id="tradeSaveButton" onclick="saveTradingRecord()">
+            SAVE TRADE
+        </button>
+
+        <button onclick="resetTradingForm()">
+            CLEAR FORM
+        </button>
+    </div>
+
+    <div class="panel">
+        <h3>Trade History</h3>
+
+        <input id="tradeSearch"
+            type="search"
+            placeholder="Search trades...">
+
+        <select id="tradeFilter">
+            <option value="all">All Trades</option>
+            <option value="Open">Open Trades</option>
+            <option value="Closed">Closed Trades</option>
+            <div class="account-card">
+    <h3>Latest Trade Balance</h3>
+    <h2>${accountMoney(latestTradeBalance)}</h2>
+</div>
+
+<div class="account-card">
+    <h3>Reconciliation Difference</h3>
+    <h2>${accountMoney(reconciliationDifference)}</h2>
+</div>
+        </select>
+
+        <div id="tradingHistory">
+            <p>Your trading records will appear here.</p>
+        </div>
+    </div>
+
+</section>
+
+  
+<section id="tradingAnalytics" class="section">
+
+    <h2>Trading Analytics</h2>
+    <p>Trading Performance Monitor</p>
+    <p>Currency: UGX</p>
+
+    <div id="tradingAnalyticsContent">
+        <p>Your trading analytics will appear here.</p>
+    </div>
+
+</section>
+
+  <section id="tradingAccount" class="section">
+    <h2>Trading Account Overview</h2>
+    <p>Account Performance Monitor</p>
+    <p>Currency: UGX</p>
+
+    <div class="panel">
+    <h3>Record Account Transaction</h3>
+
+    <label>Transaction Type</label>
+    <select id="accountTransactionType">
+        <option value="Deposit">Deposit</option>
+        <option value="Withdrawal">Withdrawal</option>
+    </select>
+
+    <label>Amount (UGX)</label>
+    <input type="number" id="accountTransactionAmount"
+        min="1" step="0.01" placeholder="Enter amount">
+
+    <label>Transaction Date</label>
+    <input type="date" id="accountTransactionDate">
+
+    <label>Description</label>
+    <textarea id="accountTransactionNotes"
+        placeholder="Enter transaction details"></textarea>
+
+    <button type="button" onclick="saveAccountTransaction()">
+        SAVE TRANSACTION
+    </button>
+</div>
+
+<div id="tradingAccountContent">
+    <p>Your trading account overview will appear here.</p>
+</div>
+</section>
+
+<section id="analytics" class="section">
+
+    <h2>Analytics & Performance</h2>
+    <p>Understand your tasks, activities and personal progress.</p>
+
+    <div class="panel">
+        <label>Analytics Period</label>
+
+        <select id="analyticsPeriod">
+            <option value="today">Today</option>
+            <option value="7" selected>Last 7 Days</option>
+            <option value="30">Last 30 Days</option>
+            <option value="365">This Year</option>
+            <option value="all">All Time</option>
+        </select>
+    </div>
+
+    <div id="analyticsContent">
+        <p>Your analytics will appear here.</p>
+    </div>
+
+</section>
+
+
+<section id="reports" class="section">
+
+    <div class="section-heading">
+        <h2>Reports & Documents</h2>
+        <p>Generate, review and export your workspace reports.</p>
+    </div>
+
+    <div class="panel">
+
+        <h3>Report Configuration</h3>
+
+        <label>Report Category</label>
+        <select id="reportCategory"
+            style="width:100%;padding:13px;margin:8px 0 16px;">
+
+            <option value="all">Complete Workspace Report</option>
+            <option value="journal">Journal Reports</option>
+            <option value="data">Data Collection Reports</option>
+            <option value="task">Tasks & Activities Reports</option>
+            <option value="trade">Trading Performance Reports</option>
+            <option value="accountTransaction">Trading Account Reports</option>
+
+        </select>
+
+        <label>Start Date</label>
+        <input type="date" id="reportStartDate"
+            style="width:100%;padding:13px;margin:8px 0 16px;">
+
+        <label>End Date</label>
+        <input type="date" id="reportEndDate"
+            style="width:100%;padding:13px;margin:8px 0 16px;">
+
+        <button type="button"
+            onclick="generateWorkspaceReport()"
+            style="width:100%;padding:15px;background:#2864dc;color:white;border:0;border-radius:8px;font-weight:bold;">
+            GENERATE REPORT
+        </button>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>Report Summary</h3>
+
+        <div id="reportSummary">
+            <div class="empty">
+                Select your report options and generate a report.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>Report Details</h3>
+
+        <div id="reportDetails">
+            <div class="empty">
+                Your report details will appear here.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>Export Report</h3>
+
+        <button type="button"
+            onclick="exportWorkspaceReportCSV()"
+            style="width:100%;padding:14px;margin-bottom:10px;">
+
+            EXPORT TO CSV
+
+        </button>
+
+        <button type="button"
+            onclick="printWorkspaceReport()"
+            style="width:100%;padding:14px;">
+
+            PRINT / SAVE AS PDF
+
+        </button>
+
+        <p id="reportStatus" style="margin-top:12px;font-size:12px;"></p>
+
+    </div>
+
+</section>
+
+
+<section id="attachments" class="section">
+
+    <div class="section-heading">
+        <h2>Attachments Manager</h2>
+        <p>Securely store and manage your documents and images.</p>
+    </div>
+
+    <div class="panel">
+
+        <h3>Upload New Attachment</h3>
+
+        <div style="margin-top:15px;">
+
+            <label>Select File</label>
+
+            <input
+                type="file"
+                id="attachmentFileInput"
+                accept="image/jpeg,image/png,image/webp,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt"
+                style="width:100%;padding:12px;margin-top:8px;"
+            >
+
+        </div>
+
+        <div style="margin-top:15px;">
+
+            <label>Related Record (Optional)</label>
+
+            <input
+                type="text"
+                id="attachmentRelatedRecord"
+                placeholder="Enter journal, task or record reference"
+                style="width:100%;padding:12px;margin-top:8px;"
+            >
+              <div style="margin-top:15px;">
+
+    <label>Reason for Attachment</label>
+
+    <textarea
+        id="attachmentReason"
+        placeholder="Explain why you are saving this file..."
+        rows="3"
+        style="width:100%;padding:12px;margin-top:8px;"
+    ></textarea>
+
+</div>
+          
+        </div>
+
+        <button
+            onclick="handleAttachmentUpload()"
+            style="margin-top:18px;"
+        >
+            Upload Attachment
+        </button>
+
+        <p id="attachmentStatus" style="margin-top:12px;">
+            Files are encrypted before being saved.
+        </p>
+
+    </div>
+
+    <div class="panel">
+
+        <h3>Saved Attachments</h3>
+
+        <div id="attachmentList" style="margin-top:15px;">
+            <div class="empty">Your attachments will appear here.</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section id="settings" class="section">
+
+    <div class="section-heading">
+        <h2>Settings & Preferences</h2>
+        <p>Manage your workspace, appearance, security and data.</p>
+    </div>
+
+    <!-- WORKSPACE PROFILE -->
+    <div class="panel">
+        <h3>Workspace Profile</h3>
+
+        <label>Workspace Name</label>
+        <input type="text" id="settingWorkspaceName"
+            placeholder="ALL FOUNDATION GROUP">
+
+        <label style="display:block;margin-top:15px;">Workspace Description</label>
+        <input type="text" id="settingWorkspaceDescription"
+            placeholder="Data & Journal Management Hub">
+
+        <button type="button" onclick="saveWorkspaceProfile()"
+            style="width:100%;padding:13px;margin-top:15px;">
+            SAVE PROFILE
+        </>
+    </div>
+
+    <!-- APPEARANCE -->
+    <div class="panel">
+        <h3>Appearance</h3>
+
+        <label>Theme</label>
+        <select id="settingTheme"
+            style="width:100%;padding:13px;margin:8px 0 15px;">
+            <option value="light">Light Theme</option>
+            <option value="dark">Dark Theme</option>
+        </select>
+
+        <label>Accent Colour</label>
+        <input type="color" id="settingAccent"
+            value="#2864dc"
+            style="width:100%;height:50px;">
+
+        <button type="button" onclick="saveAppearanceSettings()"
+            style="width:100%;padding:13px;margin-top:15px;">
+            SAVE APPEARANCE
+        </button>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="panel">
+        <h3>Security</h3>
+
+        <p>Manage access to your protected workspace.</p>
+
+        <button type="button" onclick="openChangePinSettings()"
+            style="width:100%;padding:13px;margin-top:15px;">
+            CHANGE WORKSPACE PIN
+        </button>
+
+        <button type="button" onclick="lockWorkspace()"
+            style="width:100%;padding:13px;margin-top:10px;background:#b42318;color:white;">
+            LOCK WORKSPACE NOW
+        </button>
+    </div>
+
+    <!-- DATA MANAGEMENT -->
+    <div class="panel">
+        <h3>Data Management</h3>
+
+        <div id="settingsStorageInfo">
+            Storage information will appear here.
+        </div>
+     
+<hr style="margin:18px 0;border:0;border-top:1px solid var(--border);">
+
+<h4>Encrypted Backup & Restore</h4>
+
+<p style="font-size:13px;margin:10px 0;">
+Protect your workspace records with an encrypted backup file.
+</p>
+
+<button type="button" onclick="exportEncryptedBackup()">
+    CREATE ENCRYPTED BACKUP
+</button>
+
+<input
+    type="file"
+    id="backupImportFile"
+    accept=".djhbackup,application/json"
+    style="display:none;"
+    onchange="importEncryptedBackup(event)"
+>
+
+<button type="button"
+    onclick="document.getElementById('backupImportFile').click()">
+    RESTORE FROM BACKUP
+</button>
+
+<p id="backupStatus" style="margin-top:12px;font-size:13px;">
+    No backup created yet.
+</p>
+
+        <button type="button" onclick="loadSettingsStorageInfo()"
+            style="width:100%;padding:13px;margin-top:15px;">
+            REFRESH STORAGE INFORMATION
+        </button>
+    </div>
+
+    <div class="panel">
+        <h3>Settings Status</h3>
+        <p id="settingsStatus">Settings have not been saved yet.</p>
+    </div>
+
+</section>
+
+
+</main>
+</>
+
+<script src="js/database.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/journal.js"></script>  
+<script src="js/data-collection.js"></script>  
+<script src="js/records-manager.js"></script>
+<script src="js/task-planner.js"></script> 
+<script src="js/analytics.js"></script>
+<script src="js/trading-journal.js"></script> 
+<script src="js/trading-analytics.js"></script>
+<script src="js/trading-account.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/attachments.js"></script>  
+<script src="js/reports.js"></script> 
+<script src="js/settings.js"></script>  
+<script src="js/backup.js"></script>  
+  <script>
+
+function toggleSidebar() {
+
+    document.querySelector(".app")
+        .classList.toggle("sidebar-open");
+
+}
+  
+function showSection(id, element) {
+
+    document.querySelectorAll('.section')
+    .forEach(section => {
+        section.classList.remove('active');
+    });
+
+    document.querySelectorAll('.nav-item')
+    .forEach(item => {
+        item.classList.remove('active');
+    });
+
+    document.getElementById(id)
+    .classList.add('active');
+
+    if(element) {
+        element.classList.add('active');
+    } else {
+        const nav = document.querySelector(
+            `.nav-item[onclick*="'${id}'"]`
+        );
+        if(nav) nav.classList.add('active');
+    }
+
+    const titles = {
+        dashboard: 'Main Dashboard',
+        collection: 'Data Collection',
+        journal: 'Journal Entries',
+        trading: 'Trading Journal',
+        tradingAnalytics: 'Trading Analytics',
+        tradingAccount: 'Trading Account Overview',
+        records: 'Records Manager',
+        analytics: 'Analytics',
+        reports: 'Reports',
+        attachments: 'Attachments',
+        settings: 'Settings'
+    };
+
+    document.getElementById('pageTitle')
+    .textContent = titles[id] || 'ALL FOUNDATION GROUP HUB';
+document.querySelector(".app")
+    .classList.remove("sidebar-open");
+  if (id === "records") {
+    loadManagedRecords();
+}
+  if (id === "planner") {
+    loadPlannerTasks();
+}
+  if (id === "dashboard") {
+    loadMainDashboard();
+  }
+    
+if (id === "analytics") {
+    loadAnalytics();
+}
+
+if (id === "trading") {
+    loadTradingJournal();
+}
+
+ if (id === "tradingAnalytics") {
+    loadTradingAnalytics();
+}
+
+if (id === "tradingAccount") {
+    loadTradingAccountOverview();
+}
+
+if (id === "attachments") {
+    loadAttachments();
+}
+  
+if (id === "settings") {
+    loadWorkspaceSettings();
+    loadSettingsStorageInfo();
+}
+  
+ if (id === "reports") {
+    document.getElementById("reportStatus").textContent =
+        "Choose your report category and date range.";
+} 
+}
+
+</script>
+
+</body>
+</html>
