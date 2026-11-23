@@ -3,7 +3,7 @@
    DATA & JOURNAL HUB
    TRADING ACCOUNT MANAGEMENT
 ========================================= */
-
+let editingAccountTransactionId = null;
 function accountMoney(value) {
     return Number(value || 0).toLocaleString("en-UG", {
         minimumFractionDigits: 2,
@@ -40,8 +40,10 @@ async function saveAccountTransaction() {
             notes,
             currency: "UGX",
             createdAt: new Date().toISOString()
-        });
+}, editingAccountTransactionId);
 
+editingAccountTransactionId = null;
+        
         document.getElementById("accountTransactionAmount").value = "";
         document.getElementById("accountTransactionNotes").value = "";
         document.getElementById("accountTransactionDate").value = "";
@@ -88,14 +90,7 @@ async function loadTradingAccountOverview() {
             (sum, trade) => sum + Number(trade.profitLoss || 0), 0
         );
 
-        const earliestTrade = [...trades].sort((a, b) =>
-            String(a.tradeDate || a.createdAt || "")
-                .localeCompare(String(b.tradeDate || b.createdAt || ""))
-        )[0];
-
-        const startingBalance = earliestTrade
-            ? Number(earliestTrade.balanceBefore || 0)
-            : 0;
+        const startingBalance = 0;
 
         const currentBalance =
             startingBalance + totalPnL + totalDeposits - totalWithdrawals;
@@ -169,9 +164,25 @@ const reconciliationDifference =
                     return `
                         <div style="padding:12px 0;border-bottom:1px solid #e8ecf2;">
                             <strong>${accountEscape(t.type)}</strong>
-                            <p>${accountMoney(t.amount)}</p>
-                            <small>${accountEscape(t.date)}</small>
-                            <p>${accountEscape(t.notes || "")}</p>
+<p>${accountMoney(t.amount)}</p>
+<small>${accountEscape(t.date)}</small>
+<p>${accountEscape(t.notes || "")}</p>
+
+<div style="display:flex;gap:10px;margin-top:10px;">
+
+    <button
+        onclick="editAccountTransaction('${accountEscape(record.id)}')"
+        style="background:#2563eb;color:white;padding:8px 16px;border:0;border-radius:6px;">
+        Edit
+    </button>
+
+    <button
+        onclick="removeAccountTransaction('${accountEscape(record.id)}')"
+        style="background:#dc2626;color:white;padding:8px 16px;border:0;border-radius:6px;">
+        Delete
+    </button>
+
+</div>
                         </div>
                     `;
                 }).join("") : "<p>No account transactions recorded yet.</p>"}
