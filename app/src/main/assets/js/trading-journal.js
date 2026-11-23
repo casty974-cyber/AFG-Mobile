@@ -54,12 +54,23 @@ async function loadTradingJournal() {
     container.innerHTML = "<p>Loading trades...</p>";
 
     try {
-        tradingRecords = await listHubRecords("trade") || [];
-        renderTradingJournal();
-    } catch (error) {
-        console.error("Trading Journal:", error);
-        container.innerHTML = "<p>Unable to load trades.</p>";
-    }
+    tradingRecords = await listHubRecords("trade") || [];
+
+    container.innerHTML = `
+        <div class="panel">
+            <h3>Trading Journal Diagnostic</h3>
+            <p>Records loaded: ${tradingRecords.length}</p>
+            <p>Database: ${hubDatabase ? "Connected" : "Not connected"}</p>
+            <p>Vault: ${hubEncryptionKey ? "Unlocked" : "Locked"}</p>
+        </div>
+    `;
+
+    renderTradingJournal();
+
+} catch (error) {
+    console.error("Trading Journal:", error);
+    container.innerHTML = "<p>Unable to load trades.</p>";
+}
 }
 
 async function getNextTradeDay(date) {
@@ -94,15 +105,21 @@ async function saveTradingRecord() {
     const exit = document.getElementById("tradeExit").value;
 
     const status = document.getElementById("tradeStatus").value;
-    let balanceBefore = document.getElementById("tradeBalanceBefore").value;
+let balanceBefore;
 
-if (balanceBefore === "") {
-    const latestBalance = await getLatestTradingBalance(editingTradeId);
+if (editingTradeId) {
 
-    if (latestBalance !== null) {
-        balanceBefore = latestBalance;
-        document.getElementById("tradeBalanceBefore").value = latestBalance;
-    }
+    // Preserve the original balance when editing a trade.
+    balanceBefore =
+        document.getElementById("tradeBalanceBefore").value;
+
+} else {
+
+    // Always fetch the latest account balance for a new trade.
+    balanceBefore = await getLatestTradingBalance();
+
+    document.getElementById("tradeBalanceBefore").value =
+        balanceBefore;
 }
   if (typeof updateTradeRiskMonitor === "function") {
     updateTradeRiskMonitor();
